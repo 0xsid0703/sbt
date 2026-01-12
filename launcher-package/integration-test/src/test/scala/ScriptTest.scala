@@ -103,6 +103,10 @@ object SbtScriptTest extends SimpleTestSuite with PowerAssertions {
     assert(out.contains[String]("-Dsbt.supershell=false"))
   }
 
+  makeTest("sbt -D argument without value (Windows fix for #7332)")("-Dfoo", "compile", "-v") { out: List[String] =>
+    assert(out.contains[String]("-Dfoo"))
+  }
+
   makeTest("sbt --sbt-version")("--sbt-version", "1.3.13", "-v") { out: List[String] =>
     assert(out.contains[String]("-Dsbt.version=1.3.13"))
   }
